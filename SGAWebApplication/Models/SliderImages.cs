@@ -12,7 +12,7 @@ namespace SGAWebApplication.Models
         public string ImgName { get; set; }
         public string Extension { get; set; }
         public byte[] Data { get; set; }       
-        public string ImgContent { get; set; }
+        public string ImgContent { get; set; } 
         public string ImgTitle { get; set; }
     }
 }
