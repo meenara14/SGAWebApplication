@@ -11,14 +11,18 @@ namespace SGAWebApplication.Models
 {
     public class DataContext: DbContext
     {
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public DataContext(DbContextOptions<DataContext> options) : base(options)
         {
-            var builder = new ConfigurationBuilder()
-                    .SetBasePath(Directory.GetCurrentDirectory())
-                    .AddJsonFile("appsettings.json");
-            var configuration = builder.Build();
-            optionsBuilder.UseMySql(configuration["ConnectionStrings:Defaultconnection"]);
+
         }
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    var builder = new ConfigurationBuilder()
+        //            .SetBasePath(Directory.GetCurrentDirectory())
+        //            .AddJsonFile("appsettings.json");
+        //    var configuration = builder.Build();
+        //    optionsBuilder.UseMySql(configuration["ConnectionStrings:Defaultconnection"]);
+        //}
         public DbSet<User> user { get; set; }
         public DbSet<AboutUs> aboutus { get; set; }
         public DbSet<SliderImages> sliderimages { get; set; }

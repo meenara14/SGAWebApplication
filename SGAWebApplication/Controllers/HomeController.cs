@@ -13,10 +13,14 @@ namespace SGAWebApplication.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private DataContext db = new DataContext();
-        public HomeController(ILogger<HomeController> logger)
+        //private DataContext db = new DataContext();
+        private readonly DataContext db;
+
+        
+        public HomeController(ILogger<HomeController> logger,DataContext context)
         {
             _logger = logger;
+            db = context;
         }
 
         public IActionResult Index()

@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 using SGAWebApplication.IServices;
 using SGAWebApplication.Models;
 using SGAWebApplication.Services;
@@ -34,6 +35,19 @@ namespace SGAWebApplication
             //    Configuration.GetConnectionString("DefaultConnection")));
             //services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
             //    .AddEntityFrameworkStores<DataContext>();
+            services.AddDbContextPool<DataContext>(
+            options => options.UseMySql(Configuration.GetConnectionString("DefaultConnection"),
+
+                mySqlOptions =>
+                {
+                    mySqlOptions.ServerVersion(new Version(8, 0, 29), ServerType.MySql)
+                    .EnableRetryOnFailure(
+                    maxRetryCount: 10,
+                    maxRetryDelay: TimeSpan.FromSeconds(30),
+                    errorNumbersToAdd: null);
+                }
+            ));
+           
             services.AddControllersWithViews();
             services.AddRazorPages();
             services.AddSession(options =>

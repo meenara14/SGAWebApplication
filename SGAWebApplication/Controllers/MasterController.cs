@@ -16,11 +16,14 @@ namespace SGAWebApplication.Controllers
     {
         // GET: AboutUsController
         private readonly ILogger<MasterController> _logger;
-        private DataContext db = new DataContext();
+       // private DataContext db = new DataContext();
+        private readonly DataContext db;
+
        
-        public MasterController(ILogger<MasterController> logger)
+        public MasterController(ILogger<MasterController> logger, DataContext context)
         {
             _logger = logger;
+            db = context;
         }
         //public IActionResult AddAboutUs()
         //{
