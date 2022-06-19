@@ -82,9 +82,9 @@ namespace SGAWebApplication.Controllers
         {
             if (checklogin() == true)
             {
-                ModelImgClass mdl = new ModelImgClass();
-                mdl.simgList = db.sliderimages.ToList();
-                return View(mdl);
+                //ModelImgClass mdl = new ModelImgClass();
+                //mdl.simgList = db.sliderimages.ToList();
+                //return View(mdl);
                 if (ModelState.IsValid)
                 {
                     if (Files.Count > 0)
